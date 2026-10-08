@@ -339,3 +339,189 @@ export function cupSVG({ color, color2, label, mark }) {
     <path d="M44 80 Q110 56 176 80Z" fill="#E5DACB"/>
   </svg>`;
 }
+
+/* ---------- Dining room with booths ---------- */
+export function diningSVG() {
+  const id = nextId();
+  const lamps = [560, 960];
+  const booth = (cx) => `
+    <g class="booth">
+      ${[-1, 1]
+        .map((side) => {
+          const bx = side < 0 ? cx - 178 : cx + 138;
+          const sx = side < 0 ? cx - 178 : cx + 96;
+          return `
+          <rect x="${bx}" y="246" width="40" height="214" rx="18" fill="url(#${id}-leather)"/>
+          ${[0, 1, 2].map((k) => `<line x1="${bx + 10 + k * 10}" y1="262" x2="${bx + 10 + k * 10}" y2="440" stroke="#5a0f0a" stroke-width="2" opacity=".55"/>`).join("")}
+          <rect x="${bx + 4}" y="252" width="8" height="190" rx="4" fill="#fff" opacity=".12"/>
+          <rect x="${sx}" y="378" width="82" height="34" rx="12" fill="url(#${id}-leather)"/>
+          <rect x="${sx + 6}" y="381" width="70" height="6" rx="3" fill="#fff" opacity=".14"/>
+          <rect x="${sx + 4}" y="412" width="74" height="58" fill="#3b2216"/>
+          <rect x="${sx + 4}" y="412" width="74" height="6" fill="#000" opacity=".3"/>`;
+        })
+        .join("")}
+      <rect x="${cx - 8}" y="370" width="16" height="96" fill="#2a1a12"/>
+      <ellipse cx="${cx}" cy="468" rx="44" ry="7" fill="#1a100b"/>
+      <rect x="${cx - 92}" y="356" width="184" height="14" rx="4" fill="url(#${id}-wood)"/>
+      <rect x="${cx - 92}" y="368" width="184" height="4" fill="#5a3518"/>
+      <!-- burger -->
+      <g transform="translate(${cx - 52} 322)">
+        <ellipse cx="22" cy="34" rx="30" ry="5" fill="#f2e6d6"/>
+        <rect x="2" y="24" width="40" height="8" rx="3" fill="#c46d22"/>
+        <rect x="0" y="17" width="44" height="9" rx="4.5" fill="#4e2615"/>
+        <path d="M-1 17 H45 L42 21 H2Z" fill="#ffc21a"/>
+        <path d="M2 16 C2 2 12 -2 22 -2 C32 -2 42 2 42 16Z" fill="#e8952f"/>
+        <ellipse cx="14" cy="6" rx="6" ry="2" fill="#fff" opacity=".35"/>
+      </g>
+      <!-- shake -->
+      <g transform="translate(${cx + 30} 300)">
+        <path d="M0 18 H26 L22 56 H4Z" fill="#9a6338"/>
+        <path d="M-2 18 Q-2 6 8 6 Q13 -2 18 6 Q28 6 28 18Z" fill="#fff8ee"/>
+        <circle cx="13" cy="2" r="4" fill="#d7192d"/>
+        <rect x="18" y="-14" width="4" height="30" rx="2" fill="#ff4d1f" transform="rotate(14 20 0)"/>
+      </g>
+      <!-- fries -->
+      <g transform="translate(${cx - 6} 318)">
+        ${[0, 5, 10, 15, 20].map((x, k) => `<rect x="${x + 1}" y="${k % 2 ? 0 : 4}" width="4" height="22" rx="1.5" fill="#ffd866"/>`).join("")}
+        <path d="M-2 14 H28 L24 38 H2Z" fill="#e8341c"/>
+      </g>
+    </g>`;
+
+  return `<svg class="dining" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of the dining room: red leather booths under warm pendant lamps, a neon Ember and Bun sign and a window onto the Yaletown skyline">
+    <defs>
+      <linearGradient id="${id}-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c120d"/><stop offset="1" stop-color="#2e1c13"/></linearGradient>
+      <pattern id="${id}-brick" width="64" height="26" patternUnits="userSpaceOnUse">
+        <rect width="64" height="26" fill="none"/>
+        <path d="M0 25.5 H64 M0 12.5 H64 M16 0 V12.5 M48 13 V26" stroke="#000" stroke-opacity=".28" stroke-width="1.5"/>
+      </pattern>
+      <pattern id="${id}-floor" width="56" height="56" patternUnits="userSpaceOnUse">
+        <rect width="56" height="56" fill="#1b130e"/><rect width="28" height="28" fill="#e6d6be"/><rect x="28" y="28" width="28" height="28" fill="#e6d6be"/>
+      </pattern>
+      <linearGradient id="${id}-floorShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e0a08" stop-opacity=".85"/><stop offset="1" stop-color="#0e0a08" stop-opacity=".35"/></linearGradient>
+      <linearGradient id="${id}-leather" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c8352a"/><stop offset="1" stop-color="#6e120d"/></linearGradient>
+      <linearGradient id="${id}-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a968"/><stop offset="1" stop-color="#a86a33"/></linearGradient>
+      <linearGradient id="${id}-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1626"/><stop offset="1" stop-color="#22324a"/></linearGradient>
+      <linearGradient id="${id}-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd58a" stop-opacity=".42"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></linearGradient>
+      <radialGradient id="${id}-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffcf7a" stop-opacity=".6"/><stop offset="1" stop-color="#ffcf7a" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${id}-vig" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".7"/></radialGradient>
+      <filter id="${id}-neon" x="-20%" y="-60%" width="140%" height="220%">
+        <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <rect width="1200" height="480" fill="url(#${id}-wall)"/>
+    <rect width="1200" height="360" fill="url(#${id}-brick)"/>
+
+    <!-- window onto Yaletown -->
+    <g class="dining__window">
+      <rect x="56" y="60" width="300" height="250" rx="6" fill="#4a2e1e"/>
+      <rect x="68" y="72" width="276" height="226" fill="url(#${id}-glass)"/>
+      <circle cx="300" cy="104" r="14" fill="#f6ebdd" opacity=".85"/>
+      ${[[70, 160, 40], [112, 120, 34], [148, 180, 30], [180, 100, 44], [226, 150, 36], [264, 128, 30], [296, 170, 48]]
+        .map(([x, y, w], k) => {
+          const lights = Array.from({ length: 10 }, (_, j) => {
+            const lx = x + 6 + (j % 3) * (w / 3.2);
+            const ly = y + 10 + Math.floor(j / 3) * 18;
+            return rand(k * 20 + j) > 0.45 ? `<rect class="twinkle" x="${lx.toFixed(1)}" y="${ly}" width="5" height="7" fill="#ffd58a" style="--d:${(rand(k + j) * 4).toFixed(2)}s"/>` : "";
+          }).join("");
+          return `<rect x="${x}" y="${y}" width="${w}" height="${300 - y}" fill="#081120"/>${lights}`;
+        })
+        .join("")}
+      <rect x="68" y="262" width="276" height="36" fill="#0d2236" opacity=".9"/>
+      <path d="M68 274 h40 M130 282 h60 M220 272 h50 M290 286 h40" stroke="#ffd58a" stroke-opacity=".35" stroke-width="2"/>
+      <path d="M206 72 V298 M68 185 H344" stroke="#4a2e1e" stroke-width="8"/>
+      <rect x="56" y="304" width="300" height="12" fill="#5a3826"/>
+    </g>
+
+    <!-- neon sign -->
+    <g class="neon" filter="url(#${id}-neon)">
+      <path d="M760 66 C772 78 776 88 772 98 C769 106 761 108 756 106 C748 103 746 95 749 88 C751 84 754 83 755 78 C757 82 758 85 760 85 C763 81 763 74 760 66Z" fill="none" stroke="#ffb800" stroke-width="3"/>
+      <text x="760" y="172" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="58" letter-spacing="6" fill="#ffe3d3" stroke="#ff4d1f" stroke-width="2">EMBER &amp; BUN</text>
+      <text x="760" y="206" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="15" letter-spacing="7" fill="#ffd58a">YALETOWN · VANCOUVER</text>
+    </g>
+
+    <!-- wainscot -->
+    <rect y="360" width="1200" height="120" fill="#3a2417"/>
+    ${Array.from({ length: 16 }, (_, k) => `<rect x="${k * 76 + 8}" y="372" width="60" height="96" rx="3" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="2"/>`).join("")}
+    <rect y="356" width="1200" height="8" fill="#5a3826"/>
+
+    <!-- floor -->
+    <rect y="470" width="1200" height="170" fill="url(#${id}-floor)"/>
+    <rect y="470" width="1200" height="170" fill="url(#${id}-floorShade)"/>
+    ${lamps.map((x) => `<ellipse cx="${x}" cy="520" rx="200" ry="34" fill="url(#${id}-glow)" opacity=".55"/>`).join("")}
+
+    <!-- light beams -->
+    ${lamps.map((x) => `<path class="beam" d="M${x - 34} 196 H${x + 34} L${x + 150} 470 H${x - 150}Z" fill="url(#${id}-beam)"/>`).join("")}
+
+    ${lamps.map(booth).join("")}
+
+    <!-- pendant lamps -->
+    ${lamps
+      .map(
+        (x, k) => `<g class="lamp" style="--d:${k * -1.4}s; transform-origin:${x}px 0px">
+        <line x1="${x}" y1="0" x2="${x}" y2="150" stroke="#0a0705" stroke-width="3"/>
+        <circle cx="${x}" cy="196" r="70" fill="url(#${id}-glow)"/>
+        <path d="M${x - 36} 196 L${x - 12} 150 H${x + 12} L${x + 36} 196Z" fill="#14100c" stroke="#c58a3a" stroke-width="2"/>
+        <ellipse cx="${x}" cy="196" rx="20" ry="6" fill="#ffe2a0"/>
+      </g>`
+      )
+      .join("")}
+
+    <rect width="1200" height="640" fill="url(#${id}-vig)"/>
+  </svg>`;
+}
+
+/* ---------- Yaletown map ---------- */
+export function mapSVG() {
+  const id = nextId();
+  // Frame "up" is north-west so the downtown grid reads true once rotated 45°.
+  const ns = [["Pacific Blvd", 120], ["Mainland St", 260], ["Hamilton St", 360], ["Homer St", 460], ["Richards St", 560]];
+  const ew = [["Nelson St", 20], ["Helmcken St", 160], ["Davie St", 300], ["Drake St", 440]];
+  const station = [260, 300];
+  const shop = [360, 228];
+  const blocks = [];
+  for (let i = 0; i < ns.length - 1; i++)
+    for (let j = 0; j < ew.length - 1; j++)
+      blocks.push(`<rect x="${ns[i][1] + 10}" y="${ew[j][1] + 10}" width="${ns[i + 1][1] - ns[i][1] - 20}" height="${ew[j + 1][1] - ew[j][1] - 20}" rx="6" fill="#1f1611"/>`);
+  return `<svg class="map" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Yaletown: Ember and Bun is a short walk from Yaletown–Roundhouse Canada Line station at Davie and Mainland">
+    <rect width="600" height="480" fill="#140e0b"/>
+    <g transform="rotate(45 300 240)">
+      <path d="M-400 -400 H70 V700 H-400Z" fill="#10202d"/>
+      <path d="M70 -400 V700" stroke="#1d3446" stroke-width="6"/>
+      <text x="0" y="300" transform="rotate(-90 0 300)" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="26" fill="#5f88a8">False Creek</text>
+      ${blocks.join("")}
+      <rect x="130" y="310" width="120" height="120" rx="6" fill="#1f2a17"/>
+      <text x="190" y="414" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#7fa36a">Roundhouse</text>
+      ${ns.map(([, x]) => `<line x1="${x}" y1="-400" x2="${x}" y2="900" stroke="#3a2b21" stroke-width="12"/>`).join("")}
+      ${ew.map(([, y]) => `<line x1="-200" y1="${y}" x2="900" y2="${y}" stroke="#3a2b21" stroke-width="12"/>`).join("")}
+      ${ns.map(([n, x]) => `<text x="${x}" y="${x === 120 ? 120 : 95}" transform="rotate(-90 ${x} ${x === 120 ? 120 : 95})" dy="4" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.5" fill="#a8927d">${n.toUpperCase()}</text>`).join("")}
+      ${ew.map(([n, y]) => `<text x="410" y="${y}" dy="4" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.5" fill="#a8927d">${n.toUpperCase()}</text>`).join("")}
+      <path class="map__route" d="M${station[0]} ${station[1]} H${shop[0]} V${shop[1] + 14}" fill="none" stroke="#ffb800" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+      <g transform="translate(${station[0]} ${station[1]}) rotate(-45)">
+        <circle r="13" fill="#0a8fd1" stroke="#fff" stroke-width="3"/>
+        <path d="M-5 -4 H5 V3 H-5Z M-3 3 L-6 8 M3 3 L6 8" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <g transform="translate(-20 30)">
+          <rect x="-112" y="-14" width="176" height="40" rx="8" fill="#0e0a08" stroke="#0a8fd1" stroke-opacity=".6"/>
+          <text x="-24" y="2" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#f6ebdd">Yaletown–Roundhouse</text>
+          <text x="-24" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#5fc0ee">Canada Line · SkyTrain</text>
+        </g>
+      </g>
+      <g transform="translate(${shop[0]} ${shop[1]}) rotate(-45)">
+        <circle class="map__pulse" r="18" fill="#ff4d1f" opacity=".35"/>
+        <g class="map__pin">
+          <path d="M0 0 C-16 -18 -20 -28 -20 -38 A20 20 0 1 1 20 -38 C20 -28 16 -18 0 0Z" fill="#ff4d1f" stroke="#fff" stroke-width="2.5"/>
+          <path d="M0 -52 C7 -45 9 -40 7 -34 C5 -29 -4 -28 -7 -33 C-10 -38 -5 -42 -4 -46 C-3 -42 -1 -41 1 -42 C3 -45 2 -49 0 -52Z" fill="#fff"/>
+        </g>
+        <g transform="translate(26 -50)">
+          <rect width="118" height="36" rx="8" fill="#ff4d1f"/>
+          <text x="59" y="23" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="17" letter-spacing="1" fill="#fff">EMBER &amp; BUN</text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(552 100)">
+      <circle r="22" fill="#0e0a08" stroke="#3a2b21" stroke-width="2"/>
+      <path d="M0 -14 L6 4 L0 0 L-6 4Z" fill="#ff4d1f"/>
+      <text y="16" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="800" fill="#f6ebdd">N</text>
+    </g>
+  </svg>`;
+}

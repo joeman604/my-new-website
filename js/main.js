@@ -1,4 +1,4 @@
-import { burgerSVG, friesSVG, shakeSVG, cupSVG, STACKS } from "./art.js";
+import { burgerSVG, friesSVG, shakeSVG, cupSVG, diningSVG, mapSVG, STACKS } from "./art.js";
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -17,6 +17,8 @@ $$("[data-art]").forEach((el) => {
   else if (kind === "fries") el.innerHTML = friesSVG();
   else if (kind === "shake") el.innerHTML = shakeSVG();
   else if (kind === "cup") el.innerHTML = cupSVG(el.dataset);
+  else if (kind === "dining") el.innerHTML = diningSVG();
+  else if (kind === "map") el.innerHTML = mapSVG();
 });
 
 /* ---------- 2. Split hero headline into characters ---------- */
@@ -182,6 +184,16 @@ function onScrollAnatomy() {
   });
 }
 
+/* ---------- 7b. Slow push-in on the booth scene ---------- */
+const boothPhoto = $(".booth-photo");
+function onScrollBooth() {
+  if (!boothPhoto || reduceMotion) return;
+  const r = boothPhoto.getBoundingClientRect();
+  if (r.bottom < 0 || r.top > innerHeight) return;
+  const t = clamp((innerHeight - r.top) / (innerHeight + r.height));
+  boothPhoto.style.setProperty("--bp", t.toFixed(3));
+}
+
 let ticking = false;
 function onScroll() {
   if (ticking) return;
@@ -189,6 +201,7 @@ function onScroll() {
   requestAnimationFrame(() => {
     onScrollUI();
     onScrollAnatomy();
+    onScrollBooth();
     ticking = false;
   });
 }
@@ -259,28 +272,68 @@ $$("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
 /* ---------- 12. Pointer candy: cursor, magnetic buttons, 3D tilt ---------- */
 if (finePointer && !reduceMotion) {
-  const cursor = $(".cursor");
+  const ring = $(".cursor-ring");
+  const dot = $(".cursor-dot");
   const label = $(".cursor__label");
-  let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+  const root = document.documentElement;
+  root.classList.add("has-cursor");
+
+  let mx = -100, my = -100, rx = -100, ry = -100, last = performance.now();
+  let stuckEl = null;
+
   window.addEventListener("pointermove", (e) => {
     mx = e.clientX;
     my = e.clientY;
+    // The dot is glued to the real pointer: no lag, no easing.
+    dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    if (!root.classList.contains("is-cursor-on")) {
+      rx = mx;
+      ry = my;
+      root.classList.add("is-cursor-on");
+    }
   });
-  (function follow() {
-    cx = lerp(cx, mx, 0.2);
-    cy = lerp(cy, my, 0.2);
-    cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+  document.addEventListener("mouseleave", () => root.classList.remove("is-cursor-on"));
+  window.addEventListener("blur", () => root.classList.remove("is-cursor-on"));
+  window.addEventListener("pointerdown", () => ring.classList.add("is-down"));
+  window.addEventListener("pointerup", () => ring.classList.remove("is-down"));
+
+  (function follow(now) {
+    // Frame-rate independent easing so the ring feels the same at 60Hz and 144Hz.
+    const k = 1 - Math.pow(0.001, Math.min(64, now - last) / 1000 * 3.2);
+    last = now;
+    let tx = mx, ty = my;
+    if (stuckEl) {
+      // Wrap the ring around the hovered button, following it as it moves.
+      const r = stuckEl.getBoundingClientRect();
+      tx = r.left + r.width / 2;
+      ty = r.top + r.height / 2;
+      ring.style.setProperty("--w", `${r.width + 14}px`);
+      ring.style.setProperty("--h", `${r.height + 14}px`);
+    }
+    rx = lerp(rx, tx, stuckEl ? Math.min(1, k * 1.6) : k);
+    ry = lerp(ry, ty, stuckEl ? Math.min(1, k * 1.6) : k);
+    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
     requestAnimationFrame(follow);
-  })();
+  })(last);
 
   document.addEventListener("pointerover", (e) => {
-    const big = e.target.closest("[data-cursor]");
+    const big = e.target.closest("[data-cursor]:not(.btn)");
+    const btn = e.target.closest(".btn, .to-top, .toggle button, .flavor, .nav__burger");
     const link = e.target.closest("a, button");
-    cursor.classList.toggle("is-big", !!big);
-    cursor.classList.toggle("is-link", !big && !!link);
+    stuckEl = !big && btn ? btn : null;
+    if (stuckEl) {
+      ring.style.borderRadius = `${Math.min(999, parseFloat(getComputedStyle(stuckEl).borderTopLeftRadius) + 7)}px`;
+    } else {
+      ring.style.removeProperty("--w");
+      ring.style.removeProperty("--h");
+      ring.style.borderRadius = "";
+    }
+    ring.classList.toggle("is-label", !!big);
+    ring.classList.toggle("is-stuck", !!stuckEl);
+    ring.classList.toggle("is-link", !big && !stuckEl && !!link);
+    dot.classList.toggle("is-hidden", !!big);
     if (big) label.textContent = big.dataset.cursor;
   });
-  document.addEventListener("pointerleave", () => cursor.classList.remove("is-big", "is-link"));
 
   $$(".magnetic").forEach((el) => {
     el.addEventListener("pointermove", (e) => {

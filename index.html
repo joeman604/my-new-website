@@ -27,7 +27,8 @@
     <div class="loader__brand">Ember <em>&amp;</em> Bun</div>
   </div>
 
-  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
@@ -135,7 +136,7 @@
       </div>
 
       <div class="cards">
-        <article class="card tilt reveal" data-cursor="$15">
+        <article class="card tilt reveal" data-cursor="$15 each">
           <div class="card__glare"></div>
           <span class="card__tag">Fan favourite</span>
           <div class="card__art" data-art="double"></div>
@@ -146,7 +147,7 @@
           </div>
         </article>
 
-        <article class="card tilt reveal" data-cursor="$15">
+        <article class="card tilt reveal" data-cursor="$15 each">
           <div class="card__glare"></div>
           <span class="card__tag card__tag--hot">Smoky</span>
           <div class="card__art" data-art="bacon"></div>
@@ -157,7 +158,7 @@
           </div>
         </article>
 
-        <article class="card tilt reveal" data-cursor="$15">
+        <article class="card tilt reveal" data-cursor="$15 each">
           <div class="card__glare"></div>
           <span class="card__tag card__tag--gold">Extra crispy</span>
           <div class="card__art" data-art="chicken"></div>
@@ -291,15 +292,33 @@
     <!-- ===== Dine in ===== -->
     <section class="section visit" id="visit">
       <div class="visit__copy">
-        <p class="eyebrow reveal">Dine In</p>
+        <p class="eyebrow reveal">Dine In · Yaletown</p>
         <h2 class="h2 reveal">Pull up a seat.<br /><em>Stay a while.</em></h2>
-        <p class="section__sub reveal">Our dining room is made for lingering — cozy booths for the crew, counter stools to watch the smash, and big tables for the whole family. Burgers taste best fresh off the flat-top.</p>
+        <p class="section__sub reveal">Slide into a red leather booth under the warm lamps, grab a stool to watch the smash, or bring the whole crew to a family table. Burgers taste best fresh off the flat-top.</p>
         <ul class="perks reveal">
-          <li><span>🛋️</span>Cozy booths</li>
+          <li><span>🛋️</span>Leather booths</li>
           <li><span>🪑</span>Counter seating</li>
           <li><span>👨‍👩‍👧</span>Family tables</li>
           <li><span>🔥</span>Open kitchen</li>
         </ul>
+      </div>
+
+      <figure class="booth-photo reveal">
+        <div class="booth-photo__frame" data-art="dining"></div>
+        <figcaption><span class="booth-photo__dot"></span>Our booths in Yaletown</figcaption>
+      </figure>
+
+      <div class="directions reveal">
+        <div class="map-wrap" data-art="map"></div>
+        <div class="directions__body">
+          <h3>Getting here</h3>
+          <ol class="ways">
+            <li><span class="ways__tag ways__tag--train">SkyTrain</span><p>Take the <b>Canada Line</b> to <b>Yaletown–Roundhouse Station</b> at Davie &amp; Mainland. We're a two-minute walk away.</p></li>
+            <li><span class="ways__tag">Walk</span><p>Coming along the <b>False Creek seawall</b>? Head up Davie St past the Roundhouse Community Centre.</p></li>
+            <li><span class="ways__tag">Drive</span><p>Street parking on <b>Hamilton</b> and <b>Mainland</b> streets.</p></li>
+          </ol>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Yaletown%2C%20Vancouver%2C%20BC" target="_blank" rel="noopener" class="btn magnetic"><span>Get Directions</span><i>→</i></a>
+        </div>
       </div>
 
       <div class="visit__card reveal">
@@ -312,8 +331,8 @@
         </dl>
         <div class="open-now"><span class="open-now__dot"></span><span data-open-status>Open today</span></div>
         <h3>Find us</h3>
-        <p class="muted">123 Main Street<br />Your City</p>
-        <a href="#top" class="btn magnetic" data-cursor="Go"><span>Get Directions</span><i>→</i></a>
+        <p class="muted">Yaletown<br />Vancouver, BC</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Yaletown%2C%20Vancouver%2C%20BC" target="_blank" rel="noopener" class="btn btn--ghost magnetic"><span>Open in Google Maps</span><i>↗</i></a>
       </div>
     </section>
 
