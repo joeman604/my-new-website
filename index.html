@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ember &amp; Bun — Smashed Burgers, Thick or Thin Fries, Hand-Spun Shakes</title>
+  <meta name="description" content="Ember & Bun: double patty, bacon and crispy chicken burgers — every burger $15. Thick or thin fries, hand-spun milkshakes, ice-cold pop and in-store seating." />
+  <meta name="theme-color" content="#0E0A08" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="is-loading">
+
+  <!-- ===== Preloader ===== -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__stack">
+      <span class="loader__bar loader__bar--bun-top"></span>
+      <span class="loader__bar loader__bar--lettuce"></span>
+      <span class="loader__bar loader__bar--cheese"></span>
+      <span class="loader__bar loader__bar--patty"></span>
+      <span class="loader__bar loader__bar--bun-bottom"></span>
+    </div>
+    <div class="loader__count"><span data-loader-count>0</span>%</div>
+    <div class="loader__brand">Ember <em>&amp;</em> Bun</div>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="Ember & Bun home">
+      <img src="assets/favicon.svg" alt="" width="34" height="34" />
+      <span>Ember <em>&amp;</em> Bun</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#burgers">Burgers</a>
+      <a href="#fries">Fries</a>
+      <a href="#shakes">Shakes</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Dine In</a>
+    </nav>
+    <a href="#menu" class="btn btn--small magnetic" data-cursor="Menu"><span>See the Menu</span></a>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#burgers">Burgers</a>
+    <a href="#fries">Fries</a>
+    <a href="#shakes">Shakes</a>
+    <a href="#pop">Pop</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Dine In</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero__glow"></div>
+      <div class="hero__embers" aria-hidden="true"></div>
+
+      <div class="hero__copy">
+        <p class="eyebrow reveal">Smashed to order · Est. in flame</p>
+        <h1 class="hero__title">
+          <span class="split">Stacked.</span>
+          <span class="split split--outline">Smashed.</span>
+          <span class="split split--accent">Legendary.</span>
+        </h1>
+        <p class="hero__lead reveal">Double patties with a lacy crust, thick-cut bacon, and chicken so crispy you'll hear it across the room. <strong>Every burger, just $15.</strong></p>
+        <div class="hero__ctas reveal">
+          <a href="#burgers" class="btn magnetic" data-cursor="Eat"><span>Explore Burgers</span><i>→</i></a>
+          <a href="#visit" class="btn btn--ghost magnetic" data-cursor="Visit"><span>Grab a Seat</span></a>
+        </div>
+        <div class="hero__stats reveal">
+          <div><b data-count="4.9" data-decimals="1">0</b><span>★ average rating</span></div>
+          <div><b>$<span data-count="15">0</span></b><span>every burger</span></div>
+          <div><b data-count="3">0</b><span>shake flavours</span></div>
+        </div>
+      </div>
+
+      <div class="hero__art">
+        <div class="hero__ring"></div>
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="badgeCircle" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0" /></defs>
+            <text><textPath href="#badgeCircle">ALL BURGERS · $15 · ALL BURGERS · $15 · </textPath></text>
+          </svg>
+          <span class="badge__price">$15</span>
+        </div>
+        <div class="hero__burger" data-art="hero"></div>
+        <div class="steam" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+
+      <a href="#marquee" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <section class="marquee" id="marquee" aria-label="What we serve">
+      <div class="marquee__track">
+        <div class="marquee__row">
+          <span>Double Patty</span><i>✺</i><span>Bacon Burger</span><i>✺</i><span>Crispy Chicken</span><i>✺</i><span>Thick or Thin Fries</span><i>✺</i><span>Hand-Spun Shakes</span><i>✺</i><span>Ice-Cold Pop</span><i>✺</i>
+        </div>
+        <div class="marquee__row" aria-hidden="true">
+          <span>Double Patty</span><i>✺</i><span>Bacon Burger</span><i>✺</i><span>Crispy Chicken</span><i>✺</i><span>Thick or Thin Fries</span><i>✺</i><span>Hand-Spun Shakes</span><i>✺</i><span>Ice-Cold Pop</span><i>✺</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Anatomy (scroll-driven explode) ===== -->
+    <section class="anatomy" aria-label="Anatomy of the Double Patty">
+      <div class="anatomy__sticky">
+        <div class="anatomy__intro">
+          <p class="eyebrow">Anatomy of a legend</p>
+          <h2 class="h2">Nine layers.<br /><em>Zero shortcuts.</em></h2>
+          <p class="muted">Scroll to pull our Double Patty apart, layer by glorious layer.</p>
+        </div>
+        <div class="anatomy__stage">
+          <div class="anatomy__burger" data-art="anatomy"></div>
+          <ul class="anatomy__labels" aria-hidden="true"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Burgers ===== -->
+    <section class="section" id="menu">
+      <div class="section__head" id="burgers">
+        <p class="eyebrow reveal">The Burgers</p>
+        <h2 class="h2 reveal">Three icons.<br /><em>One price.</em></h2>
+        <p class="section__sub reveal">No upcharges, no confusion. Every burger on the board is <span class="hl">$15</span>.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card tilt reveal" data-cursor="$15">
+          <div class="card__glare"></div>
+          <span class="card__tag">Fan favourite</span>
+          <div class="card__art" data-art="double"></div>
+          <div class="card__body">
+            <h3>Double Patty</h3>
+            <p>Two smashed beef patties with crispy edges, double aged cheddar, pickles, tomato and crisp leaf on butter-toasted brioche.</p>
+            <div class="card__foot"><span class="price">$15</span><span class="chip">2× Beef</span></div>
+          </div>
+        </article>
+
+        <article class="card tilt reveal" data-cursor="$15">
+          <div class="card__glare"></div>
+          <span class="card__tag card__tag--hot">Smoky</span>
+          <div class="card__art" data-art="bacon"></div>
+          <div class="card__body">
+            <h3>Bacon Burger</h3>
+            <p>Smashed beef, melted cheddar and two strips of thick-cut smoked bacon, crowned with tomato and leaf. Salty, smoky, perfect.</p>
+            <div class="card__foot"><span class="price">$15</span><span class="chip">Thick-cut Bacon</span></div>
+          </div>
+        </article>
+
+        <article class="card tilt reveal" data-cursor="$15">
+          <div class="card__glare"></div>
+          <span class="card__tag card__tag--gold">Extra crispy</span>
+          <div class="card__art" data-art="chicken"></div>
+          <div class="card__body">
+            <h3>Crispy Chicken</h3>
+            <p>Double-dredged, buttermilk-brined chicken fried shatteringly crispy, with signature ember sauce, pickles and crisp leaf.</p>
+            <div class="card__foot"><span class="price">$15</span><span class="chip">Crunch Guaranteed</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Fries ===== -->
+    <section class="section split-section" id="fries">
+      <div class="split-section__art">
+        <div class="fries-wrap" data-art="fries" data-cut="thick"></div>
+      </div>
+      <div class="split-section__copy">
+        <p class="eyebrow reveal">The Fries</p>
+        <h2 class="h2 reveal">Thick or thin?<br /><em>Your call.</em></h2>
+        <p class="section__sub reveal">Hand-cut potatoes, double-fried and salted the second they leave the oil. Pick your cut — fluffy steak-cut or shoestring-skinny.</p>
+
+        <div class="toggle reveal" role="radiogroup" aria-label="Choose your fry cut">
+          <span class="toggle__pill"></span>
+          <button role="radio" aria-checked="true" data-cut="thick" class="is-active">Thick Cut</button>
+          <button role="radio" aria-checked="false" data-cut="thin">Thin Cut</button>
+        </div>
+
+        <div class="fry-info reveal">
+          <div class="fry-info__item is-active" data-cut-info="thick">
+            <h3>Thick Cut</h3>
+            <p>Crisp, golden shell. Fluffy, mashed-potato middle. Built for dunking.</p>
+          </div>
+          <div class="fry-info__item" data-cut-info="thin">
+            <h3>Thin Cut</h3>
+            <p>Shoestring-skinny and shatter-crisp from end to end. Dangerously snackable.</p>
+          </div>
+          <span class="price">$5</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Shakes ===== -->
+    <section class="section shakes" id="shakes" data-flavor="banana-vanilla">
+      <div class="shakes__bg" aria-hidden="true"></div>
+      <div class="section__head">
+        <p class="eyebrow reveal">The Shakes</p>
+        <h2 class="h2 reveal">Hand-spun.<br /><em>Spoon-thick.</em></h2>
+      </div>
+
+      <div class="shakes__grid">
+        <div class="shakes__art">
+          <div class="shake-wrap" data-art="shake"></div>
+        </div>
+        <div class="shakes__picker" role="tablist" aria-label="Milkshake flavours">
+          <button class="flavor is-active" role="tab" aria-selected="true" data-flavor="banana-vanilla">
+            <span class="flavor__dot"></span>
+            <span class="flavor__text"><b>Banana Vanilla</b><small>Ripe banana blended with real vanilla bean ice cream.</small></span>
+            <span class="price">$7</span>
+          </button>
+          <button class="flavor" role="tab" aria-selected="false" data-flavor="choco-banana">
+            <span class="flavor__dot"></span>
+            <span class="flavor__text"><b>Chocolate Banana</b><small>Rich chocolate and sweet banana — the best of both worlds.</small></span>
+            <span class="price">$7</span>
+          </button>
+          <button class="flavor" role="tab" aria-selected="false" data-flavor="chocolate">
+            <span class="flavor__dot"></span>
+            <span class="flavor__text"><b>Chocolate</b><small>Deep, dark and silky with a fudge drizzle and sprinkles.</small></span>
+            <span class="price">$7</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pop ===== -->
+    <section class="section" id="pop">
+      <div class="section__head">
+        <p class="eyebrow reveal">The Pop</p>
+        <h2 class="h2 reveal">Ice-cold.<br /><em>Always fizzy.</em></h2>
+      </div>
+      <div class="pops">
+        <div class="pop reveal" data-cursor="Fizz">
+          <div class="pop__art" data-art="cup" data-color="#E4141B" data-color2="#9E0B10" data-label="Coke" data-mark="COKE"></div>
+          <h3>Coke</h3><span class="price">$3</span>
+        </div>
+        <div class="pop reveal" data-cursor="Fizz">
+          <div class="pop__art" data-art="cup" data-color="#22B14C" data-color2="#0F7A33" data-label="Sprite" data-mark="SPRITE"></div>
+          <h3>Sprite</h3><span class="price">$3</span>
+        </div>
+        <div class="pop reveal" data-cursor="Fizz">
+          <div class="pop__art" data-art="cup" data-color="#FF7A1A" data-color2="#C24B05" data-label="Classic pop" data-mark="POP"></div>
+          <h3>Classic Pop</h3><span class="price">$3</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <section class="section reviews" id="reviews">
+      <div class="reviews__head">
+        <div>
+          <p class="eyebrow reveal">The Reviews</p>
+          <h2 class="h2 reveal">Don't take<br /><em>our word for it.</em></h2>
+        </div>
+        <div class="score reveal">
+          <div class="score__num"><span data-count="4.9" data-decimals="1">0</span><small>/5</small></div>
+          <div class="stars" style="--rating: 4.9"><span>★★★★★</span></div>
+          <p class="muted">from <b data-count="2400" data-suffix="+">0</b> happy guests</p>
+        </div>
+      </div>
+
+      <div class="reviews__rows">
+        <div class="reviews__row">
+          <div class="reviews__track">
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"The Double Patty is ridiculous. Those crispy edges on the smash patties? I think about them weekly."</blockquote><figcaption><span class="avatar">M</span>Marcus T.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Best crispy chicken burger in town, hands down. It actually crunches. Every. Single. Bite."</blockquote><figcaption><span class="avatar">P</span>Priya S.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Chocolate banana shake is unreal. So thick the straw stands up on its own."</blockquote><figcaption><span class="avatar">J</span>Jordan L.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"$15 for a burger this good is a steal. The bacon is thick-cut and actually smoky."</blockquote><figcaption><span class="avatar">A</span>Aisha K.</figcaption></figure>
+          </div>
+        </div>
+        <div class="reviews__row reviews__row--reverse">
+          <div class="reviews__track">
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Love that you can pick thick or thin fries. Team thin forever — they're perfect."</blockquote><figcaption><span class="avatar">D</span>Daniel R.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Super comfy seating and the staff are so friendly. Our new Friday night spot."</blockquote><figcaption><span class="avatar">S</span>Sofia M.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Banana vanilla shake + bacon burger + thick fries. That's the move. Trust me."</blockquote><figcaption><span class="avatar">E</span>Ethan W.</figcaption></figure>
+            <figure class="review"><div class="review__stars">★★★★★</div><blockquote>"Fresh, hot, fast and genuinely delicious. Brought the whole family and everyone left happy."</blockquote><figcaption><span class="avatar">N</span>Nadia H.</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Dine in ===== -->
+    <section class="section visit" id="visit">
+      <div class="visit__copy">
+        <p class="eyebrow reveal">Dine In</p>
+        <h2 class="h2 reveal">Pull up a seat.<br /><em>Stay a while.</em></h2>
+        <p class="section__sub reveal">Our dining room is made for lingering — cozy booths for the crew, counter stools to watch the smash, and big tables for the whole family. Burgers taste best fresh off the flat-top.</p>
+        <ul class="perks reveal">
+          <li><span>🛋️</span>Cozy booths</li>
+          <li><span>🪑</span>Counter seating</li>
+          <li><span>👨‍👩‍👧</span>Family tables</li>
+          <li><span>🔥</span>Open kitchen</li>
+        </ul>
+      </div>
+
+      <div class="visit__card reveal">
+        <div class="visit__card-glow"></div>
+        <h3>Hours</h3>
+        <dl class="hours">
+          <div><dt>Mon – Thu</dt><dd>11am – 10pm</dd></div>
+          <div><dt>Fri – Sat</dt><dd>11am – 12am</dd></div>
+          <div><dt>Sunday</dt><dd>12pm – 9pm</dd></div>
+        </dl>
+        <div class="open-now"><span class="open-now__dot"></span><span data-open-status>Open today</span></div>
+        <h3>Find us</h3>
+        <p class="muted">123 Main Street<br />Your City</p>
+        <a href="#top" class="btn magnetic" data-cursor="Go"><span>Get Directions</span><i>→</i></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__big" aria-hidden="true">
+      <span>EMBER</span><span class="amp">&amp;</span><span>BUN</span>
+    </div>
+    <div class="footer__row">
+      <p>© <span data-year></span> Ember &amp; Bun. Smashed with love.</p>
+      <nav aria-label="Footer">
+        <a href="#burgers">Burgers</a><a href="#fries">Fries</a><a href="#shakes">Shakes</a><a href="#pop">Pop</a><a href="#visit">Visit</a>
+      </nav>
+      <a href="#top" class="to-top magnetic" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
